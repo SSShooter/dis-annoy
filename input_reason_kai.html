@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"/>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<title>输入原因</title>
+</head>
+
+<body>
+<section id="p1" data-role="page">
+<div class="content" data-role="content">
+<p id="fannao"></p>
+<button type="button" data-icon="gear" data-iconpos="right" data-mini="true" data-inline="true" id="add">Add</button>
+
+<p>原因</p>
+
+<div id="form">
+<!--重点：data-ajax="false"-->
+<div id="set1" data-role="fieldcontain"><label for="reason">resaon</label><input type="text"/></div>
+</div>
+<button type="button" id="button">提交</button>
+</div>
+
+<script>
+
+$(document).ready(function() {
+	var an="为什么"+localStorage.annoyance+"？";
+	$("#fannao").append(an);//如果前一页有同id元素，会选择上一页的元素，原因未明
+
+    $("#add").click(function(){
+		var addcontent = "<div data-role='fieldcontain' class='ui-field-contain'><label>resaon</label><div class='ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset'><input type='text'/></div></div>";	
+		$("#form").append(addcontent);
+		
+	});
+		/*重点：添加.trigger( "create" );*/
+	/*$("#button").click(function(){
+		var reasonx = new Array(); //创建数组
+		$("input").each(function(i){
+			localStorage.setItem("reason"+i,$(this).val());
+			//reasonx.push($(this).val());
+			reasonx[i]=$(this).val();
+		});
+		localStorage.setItem("reasonx",reasonx);
+		
+		$.each(localStorage.reasonx, function(){
+		alert(this);
+		});
+	});*/  //方法一，存数组用each循环
+	$("#button").click(function(){
+		$("input").each(function(i){
+			localStorage.setItem("reason"+i,$(this).val());
+			localStorage.setItem("reason_counter",i);
+		});
+		location.href = "soluorrea.html";
+	});
+});
+</script>
+
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/default.css"/>
+    <link rel="stylesheet" href="css/daycheck.css"/>
+	<link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/homepage.css"/>
+    <link rel="stylesheet" href="css/all.css"/>
+    <script src="js/jquery-2.1.4.min.js"></script>
+	
+	<!--[if IE]>
+		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+</head>
+<body scrolling="no" >
+	<nav id="menu" class="menu">
+     
+        <header class="menu-header">
+          <span class="menu-header-title"  style="color:white;">Dis-Annoy</span>
+        </header>
+
+      <section class="menu-section">
+        <h3 class="menu-section-title">原因分析</h3>
+        <ul class="menu-section-list">
+          <li><a id="linkt">分析</a></li>
+        </ul>
+      </section>
+
+      <section class="menu-section">
+        <h3 class="menu-section-title">RET</h3>
+        <ul class="menu-section-list">
+          <li><a id="rets">RET对话</a></li>
+          <li><a id="retsheet">RET表格</a></li>
+        </ul>
+      </section>
+
+      <section class="menu-section">
+        <h3 class="menu-section-title">文章</h3>
+        <ul class="menu-section-list">
+          <li><a class="atc" id="anger">愤怒</a></li>
+          <li><a class="atc" id="anxiety">焦虑</a></li>
+          <li><a class="atc" id="delay">拖延</a></li>
+          <li><a class="atc" id="health">健康</a></li>
+          <li><a class="atc" id="life">生活</a></li>
+        </ul>
+      </section>
+      
+       <section class="menu-section">
+        <h3 class="menu-section-title">签到</h3>
+        <ul class="menu-section-list">
+          <li><a id="checkin">Sign in</a></li>
+        </ul>
+      </section>
+    </nav>
+    <main id="main" class="panel">
+    	<div id="dialog0"><!--诱发事件输入框-->
+    		<i class="fa fa-close" style="font-size:24px;color:#FFFFFF" id="close"></i>
+    		<p class="horizontal_center" style="color:#FFFFFF;white-space:nowrap">请输入A（诱发事件）</p>
+    		<input class="horizontal_center" id="input_a" type="text" style="top:40px; width:80%;"/>
+    		<button class="horizontal_center white_button" id="ok" style="top:75px">确认</button>
+    	</div>
+    
+    	<div class="center" id="dialog" style="z-index:9999999;"><!--确认是否保存ret对话-->
+			<div class="up float" >不保存直接离开？</div>
+            <button class="down button2" id="confirm" type="button" data-role="none">是</button>
+			<button class="down button2" id="cancel" type="button" data-role="none">否</button>
+		</div>
+
+    	<div  id="bar">
+        	<i class="fa fa-bars fa-2x btn-hamburger js-slideout-toggle lefticon" id="menubutton"></i>
+        	<i class="fa fa-chevron-circle-left fa-2x lefticon" id="back" style="display:none"></i>
+        	<img id="icon" src="images/menu.jpg" />
+        	<p id="a"></p>
+        	<i class="fa fa-plus-circle fa-2x righticon" id="newret" style="display:none" ></i>
+        	<i class="fa fa-save fa-2x righticon" id="save" style="display:none"></i>
+        	<i class="fa fa-gear fa-2x righticon" id="config"></i>
+    	</div>
+        
+    	 <iframe id="ipage" src="home.html" width=100% frameborder=0></iframe>
+         <div class="mask"></div>
+         <div class="bar_mask"></div>
+    </main>
+	
+	<script type="text/javascript" src="js/slideout.min.js"></script>
+    <script src="js/alert_message.js"></script>
+	<script type="text/javascript">
+	$('iframe').css('height',document.body.clientHeight);
+	$('html body').css('height',document.body.clientHeight);
+	localStorage.clear();//测试用
+	
+	//$("#newret").toggle();//能创建按钮后立刻使用，按钮必须一直存在，开始被隐藏
+	//$("#dialog").toggle();//这两行用css实现
+		var slideout = new Slideout({
+	        'panel': document.getElementById('main'),
+	        'menu': document.getElementById('menu'),
+	        'padding': 256,
+	        'tolerance': 70
+	      });
+
+	      document.querySelector('.js-slideout-toggle').addEventListener('click', function() {
+	        slideout.toggle();
+	      });
+
+	      document.querySelector('.menu').addEventListener('click', function(eve) {
+	        if (eve.target.nodeName === 'A') { slideout.close(); }
+	      });
+	     function aload(t){"use strict";t=t||window.document.querySelectorAll("[data-aload]"),void 0===t.length&&(t=[t]);var a,e=0,r=t.length;for(e;r>e;e+=1)a=t[e],a["LINK"!==a.tagName?"src":"href"]=a.getAttribute("data-aload"),a.removeAttribute("data-aload");return t}
+		
+		
+		$(document).ready(function() {
+			//localStorage.clear();//测试用
+			function changetoopen(){
+			$("#menubutton").attr("class","fa fa-bars fa-2x btn-hamburger js-slideout-toggle lefticon");
+			a = 0;
+			}
+			var a=0;
+			$("#menubutton").click(function(){
+				$(".mask").toggle();
+				if(a!=1){
+					$(this).attr("class","fa fa-close fa-2x btn-hamburger js-slideout-toggle lefticon");
+					a = 1;}
+				else{changetoopen();}
+				
+			});
+	 
+		
+	 $("li").click(function(){
+		 changetoopen();
+	 });
+	 $("#linkt").click(function(){//菜单选项一
+		$("#newret").hide();
+		$("iframe").attr("src","input_q.html");
+		});
+	 $("#rets").click(function(){//菜单选项二1
+		localStorage.removeItem("id_temp");
+		$("#newret").show();
+		$("iframe").attr("src","ret_list.html");
+		});
+	$("#retsheet").click(function(){//菜单选项二2
+		localStorage.removeItem("id_temp");
+		$("#newret").hide();
+		$("iframe").attr("src","ret_form_tips.html");
+		});
+	$("a.atc").click(function(){//各个文章类型
+		$("#newret").hide();
+		localStorage.formtemp=$(this).attr('id');
+		$("iframe").attr("src","a_list.html");
+	});
+	
+	 $("#newret").click(function(){//弹出对话框，提示输入A
+	 	$(".bar_mask").toggle();
+		$("#dialog0").toggle();
+		});
+		
+	 $("#checkin").click(function(){
+		 $("#newret").hide();
+		$("iframe").attr("src","daycheck.html");
+		});
+		
+	$("#close").click(function(){//关闭输入A的对话框
+		$(".bar_mask").hide();
+		$("input").val("");
+	});
+	
+	$("#ok").click(function(){//这是确定A的按钮
+		if(!$("input").val()){
+			alert_message();
+			}
+		else{
+		localStorage['at'+localStorage.counter]= $("input").val(); 
+		$("input").val("");
+		$("#a").empty();//清空之前的标题
+		$("#a").append(localStorage['at'+localStorage.counter]);
+		center_toggle();
+		left_toggle();
+		right_toggle();
+		$("#dialog0").toggle();//dialog0消失
+		$("iframe").attr("src","ret.html");
+		$(".bar_mask").hide();
+		}
+	});
+	
+	$("#back").click(function(){
+		//警告：是否放弃编辑  选项：1是 2否
+		//选是返回ret_list，选否dialog消失
+		$("#dialog").toggle();
+		
+		});
+	
+	$("#save").click(function(){
+		/*if(localStorage.zhishiwu){
+			localStorage["acontent"+localStorage.id_temp] = $("#ipage").contents().find("#diacon").html(); 
+			localStorage.removeItem("zhishiwu");
+			}*/
+		if(localStorage.id_temp){
+			localStorage["acontent"+localStorage.id_temp]= $("#ipage").contents().find("#diacon").html();
+			localStorage.removeItem("acontent"+localStorage.id_temp);}
+		else{
+			localStorage['acontent'+localStorage.counter]= $("#ipage").contents().find("#diacon").html();
+		}
+		$("iframe").attr("src","ret_list.html");
+		center_toggle();
+		left_toggle();
+		right_toggle();
+	});
+	
+	//改进：总结消失显示规律，点击后父元素消失
+	$("#confirm").click(function(){
+		localStorage.removeItem('at'+localStorage.counter);
+		$("iframe").attr("src","ret_list.html");
+		$("#dialog").fadeToggle();
+		center_toggle();
+		left_toggle();
+		right_toggle();
+		});
+		
+	$("#cancel").click(function(){$("#dialog").fadeToggle();});
+});
+
+	function savebutton(){
+		$("#save").toggle();//仅用于出现？
+	}
+	function left_toggle(){
+		$("#back").toggle();//返回按钮出现/消失
+		$("#menubutton").toggle();//菜单按钮消失/出现
+	}
+	function center_toggle(){
+		$("#icon").toggle();//dis-annoy标志消失/出现
+		$("#a").toggle();//标题出现/消失
+	}
+	function right_toggle(){
+		$("#save").toggle();//存档按钮出现/消失
+		$("#newret").toggle();//新建按钮消失/出现
+	}
+	$("#menu").click(function(){
+		$("#config").hide();
+		$(".mask").hide();
+	});
+	$("#config").click(function(){
+		$(".mask").hide();
+		$("iframe").attr("src","setting.html");
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="js/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" href="css/all.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<style>
+html,body{margin:0;}
+.clear, article.post:after {
+  clear: both;
+  content: '';
+  display: block;
+}
+
+article.post {
+  border-bottom: 1px dotted #b4b4b4;
+  padding-bottom: 10px;
+}
+article.post h1 {
+  font-size:36px;
+  font-weight: normal;
+  margin: 0;
+  padding-left:10px;
+}
+article.post a {
+  color: #dc4e00;
+  text-decoration: none;
+}
+#cyuui{
+	font-size: 20px;
+	font-weight: 500;
+	letter-spacing: 2px;
+}
+</style>
+</head>
+
+<body>
+<div class="header"></div>
+<div id="all">
+</div>
+  
+<script>
+function load_ret(){
+		var i=1;
+		while(localStorage.getItem("at"+i))
+		{	
+			$("#all").append('<article class="post" id="'+i+'"><h1>'+localStorage.getItem("at"+i)+'</h1></article>');
+			i++;
+			localStorage.counter=i;
+		}
+	}
+
+$(document).ready(function() {
+	localStorage.counter=1;
+	//localStorage.at1=1;
+	//localStorage.at2=2;
+	load_ret();
+	if(localStorage.counter==1){
+		$("#all").append('<div id="cyuui" class="center">点击右上角<i class="fa fa-plus-circle fa-1x"></i>创建新的ret对话</div>');
+		}
+	$("article").click(function(){
+		localStorage.id_temp = $(this).attr("id");
+		location.href = "ret.html";
+		window.parent.center_toggle();
+		window.parent.left_toggle();
+		window.parent.right_toggle();
+		
+		});
+});
+</script>
+</body>
+</html>
+

@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="js/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" href="css/all.css"/>
+<style>
+img{
+	width:100%;
+}
+.b{
+	width: 50%;
+	height:50%;
+	text-align: center;
+	overflow:hidden;
+}
+#f1,#f2,#f3,#f4{
+	position:absolute;
+}
+#f2{
+	left:50%;
+}
+#f3{
+	top:50%;
+}
+#f4{
+	top:50%;
+	left:50%;
+}
+#big{
+	height:100%;
+	width:100%;
+	position:absolute;
+	z-index:1000;
+	display:none;
+}
+</style>
+</head>
+
+<body>
+<div id="big"></div>
+<div class="b" id="f1"><span>表格1</span><img src="images/form1.png"></div>
+<div class="b" id="f2"><span>表格2</span><img src="images/form2.png"></div>
+<div class="b" id="f3"><span>填写示例1</span><img src="images/sample1.png"></div>
+<div class="b" id="f4"><span>填写示例2</span><img src="images/sample2.png"></div>
+<script>
+$(document).ready(function(){
+	$(".b").click(function () {
+		var srct = $(this).children().last().attr("src");
+		$("#big").append('<img src="'+srct+'">');
+		$("#big").fadeIn();
+	});
+	$("#big").click(function(){
+		$("#big").empty();
+		$(this).fadeOut();
+	});
+});
+</script>
+</body>
+</html>

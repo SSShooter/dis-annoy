@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href='css/all.css'/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="js/jquery-2.1.4.min.js"></script>
+<style>
+#p2{
+	position: absolute;
+	height: 80%;
+	width: 80%;
+	background-color: #FFFFFF;
+	z-index: 9999;
+	border: medium solid #515151;
+	border-radius: 10px;
+	text-align: center;
+}
+ul li{
+	list-style-type:none;
+}
+ul{margin-left:-10px;} 
+li{
+	border-top:1px solid #B1B1B1;
+	padding-top:10px;
+	padding-left:10px;
+}
+.active{
+	background:#868686;
+}
+#form{
+	padding:50px;
+}
+input{
+	border-radius:4px;
+	width:80%;
+	height:20px;
+}
+#button_g{
+	bottom:10px;
+}
+#last_step{
+	width:100%;
+	border:1px solid #FFFFFF;
+	border-bottom:1px solid #000000;
+	border-top:1px solid #000000;
+	background:#FFFFFF;
+	height:50px;
+	box-shadow:0;
+	position:absolute;
+	bottom:3px;
+}
+</style>
+<title>解决或细分</title>
+</head>
+
+<body>
+
+<div id="p2" class="center">
+	<i class="fa fa-close" style="font-size:24px;" id="close"></i>
+	<div class="content">
+		<p id="why"></p>
+        <p>请输入原因</p>
+		<div id="form">
+			<div id="reason_line">
+            	<input type="text"/>
+            </div>
+		</div>
+        <div id="button_g" class="horizontal_center">
+        	<button class="black_button" id="add">Add</button>
+			<button class="black_button" type="button" id="btn">提交</button>
+        </div>
+	</div>
+</div>
+
+<section id="p1">
+	<div class="header"></div>
+	<div id="rea_list"></div>
+	<button id="last_step">尝试思考一下怎么解决最终的问题？</button>
+</section>
+
+
+<script src="js/alert_message.js"></script>
+<script>
+$(document).ready(function() {
+	localStorage.reason1 =1;
+	localStorage.reason_counter =1;
+	$("#p2").toggle();
+	var i;
+	
+	for(i=0;i<=localStorage.reason_counter;i++)
+	{
+	$("#rea_list").append('<li style="list-style-type:none;" id="reason'+i+'"><i class="fa fa-angle-right fa-1x" ></i>'+ localStorage["reason"+i] +'</li>');
+	}
+	
+	
+	var addcontent = '<br><div id="reason_line"><input type="text"/></div>';	
+		
+    $("#add").click(function(){//添加reason输入框
+		$("#form").append(addcontent);
+	});
+	
+	$("#btn").click(function(){//确认输入的reason并显示在主页面
+		$("input").each(function(){
+			if(!$(this).val()){//空输入框标记
+				localStorage.cempty = 1;
+				return false;}
+			});
+			if(localStorage.cempty == 1){//检查是否有空的输入框
+				alert_message();
+				localStorage.cempty = 0;}
+			else{//如果不为空
+				$("input").each(function(i){//获取数据
+				localStorage.setItem(localStorage.reason_temp+i,$(this).val());
+				localStorage.setItem(localStorage.reason_temp+"_counter",i);
+			});
+		//输出数据
+		$("#"+localStorage.reason_temp).append('<ul id="ul'+localStorage.reason_temp+'"></ul>');//添加ul标签
+		for(i=0;i<=localStorage.getItem(localStorage.reason_temp+"_counter");i++){
+			$("#ul"+localStorage.reason_temp).append('<li id="'+localStorage.reason_temp+i+'"><i class="fa fa-angle-right fa-1x" ></i>'+
+		localStorage.getItem(localStorage.reason_temp+i)
+		+'</li>');//循环生成列表
+		}
+			//清空输入框的内容
+			$("#form").empty();//清空全部
+			$("#form").append(addcontent);//添加一个
+			$("#p2").toggle();
+		}
+	});	
+	
+	$("#close").click(function(){
+		$("#form").empty();
+		$("#form").append(addcontent);
+	});
+	
+	$(document).on("click", "li", function(){
+		setTimeout(function () {
+        $(this).addClass("active");
+    }, 600);
+	//$("#why").html("");
+	//localStorage.why_temp=$(this).html();
+	//$("#why").append("为什么"+localStorage.why_temp+"?");
+		//setTimeout(function () {$(this).removeClass("active");}, 600);
+		localStorage.reason_temp=$(this).attr("id");
+		
+		
+		$("#p2").toggle();
+		event.stopPropagation();
+		return false;//阻止事件冒泡
+	});
+	
+	$("#last_step").click(function(){
+		var o=0;
+		$("li").each(function() {
+            if (!$(this).is(':has(ul)') ) {
+			localStorage["final"+o]=$(this).html();
+			o++;
+			}
+			localStorage.final_counter=o;
+        });
+		location.href="last.html";
+	
+	});
+	
+});
+</script>
+</body>
+</html>

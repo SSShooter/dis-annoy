@@ -1,0 +1,118 @@
+@charset "utf-8";
+/* CSS Document */
+html,body{
+	height:100%;
+	width:100%;
+}
+.triangle-obtuse {
+	position: relative;
+	padding: 15px;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	color: #fff;
+	/* css3 */
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.c{background:#6F6F6F;}
+.ib{background:#414141;}
+.d{background:#824041;}
+.rb{background:#FF7E80;}
+.e{background:#FF363A;}
+.left {
+	margin-left:50px;
+}
+.right {
+	margin-right:50px;
+}
+
+#input {
+	width: 100%;
+	text-align: center;
+	position:absolute;
+	left:0;
+	bottom: 10px;
+}
+
+#selectcontainer{
+	width:100%;
+	position:absolute;
+	left:0;
+	bottom:75px;
+}
+#selectcontainer > input,
+#selectcontainer > a{
+	width:20%;
+	height:30px;
+	position:fixed;
+	
+}
+#selectcontainer > input{
+	z-index:1000;
+	opacity:0;
+}
+#selectcontainer > a{
+	z-index:10;
+	text-align:center;
+	color:#000000;
+}
+
+#s2,#s2 + a{left:20%;}
+#s3,#s3 + a{left:40%;}
+#s4,#s4 + a{left:60%;}
+#s5,#s5 + a{left:80%;}
+
+#selectcontainer input:checked + a{color:#7F7F7F;}
+
+#diacon{
+	overflow:scroll;
+	overflow-x: hidden;
+	padding-bottom: 62px;
+	z-index:100000;
+	
+	}
+#diacon::-webkit-scrollbar {
+        width:5px;
+        height:10px;
+    }
+#diacon::-webkit-scrollbar-button    {
+        display:none;
+    }
+#diacon::-webkit-scrollbar-track     {
+        display:none;
+    }
+    
+#diacon::-webkit-scrollbar-thumb{
+        background:#A8A8A8;
+        border-radius:4px;
+    }
+#dia{
+	border-radius:5px;
+	width:75%;
+	border:1px solid #515151;
+	height:28px;
+	position:relative;
+	top:2px;
+}
+#button{
+	width:15%;
+}
+#tipsframe{
+	display:none;
+}
+#tips{
+	font-weight: bolder;
+	font-family: "微软雅黑 Light";
+	text-align: center;
+	letter-spacing: 5px;
+	background-color:#FFFFFF;
+	border-radius:10px;
+	padding:30px;
+}
+#c{color:#6F6F6F;}
+#ib{color:#414141;}
+#d{color:#824041;}
+#rb{color:#FF7E80;}
+#e{color:#FF363A;}

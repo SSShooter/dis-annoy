@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"/>
+<link rel="stylesheet" href="css/all.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/ret.css"/>
+</head>
+<body>
+<header data-role="header"></header>
+<div class="content" data-role="content">
+	<div id="selectcontainer">
+		<input id="s1" type="radio" name="x" value="1" data-role="none"/><a>C</a>
+		<input id="s2" type="radio" name="x" value="2" data-role="none"/><a>IB</a>
+		<input id="s3" type="radio" name="x" value="3" data-role="none"/><a>D</a>
+		<input id="s4" type="radio" name="x" value="4" data-role="none"/><a>RB</a>
+		<input id="s5" type="radio" name="x" value="5" data-role="none"/><a>E</a>  
+	</div>
+	<div id="input" style="white-space:nowrap;">
+		<input id="dia" type="text" data-role="none"/ >
+		<input class="black_button" type="submit" name="button" id="button" value="提交" 			data-role="none"/>
+	</div>
+<!--把这段放在后面，确保不被上面的div遮挡，导致滚动条不可用,并且z-index要调最高，原因未明-->
+	<div id="diacon">
+	</div>
+    <div id="tipsframe"></div>
+</div>
+<script src="js/alert_message.js"></script>
+<script>
+$(document).ready(function(){
+	var h=document.body.clientHeight;
+	h=h*0.6;
+	$('#diacon').css('height',h);
+	if(localStorage.id_temp){
+		$("#diacon").append(localStorage["acontent"+localStorage.id_temp]);
+		//localStorage.removeItem("acontent"+localStorage.id_temp);
+		//保存需要使用id_temp
+	}
+	$("#button").click(function(){
+		$("#diacon").scrollTop(99999);
+		var dia = $("#dia").val();
+		var code = $("input[name='x']:checked").val();//注意：把code转换成数字
+		
+		switch(Number(code))
+		{
+		case 1://非理性信念的后果
+			var attr = "triangle-obtuse right c";
+			break;
+		case 2://非理性信念
+			var attr = "triangle-obtuse right ib";
+			break;
+		case 3://与非理性信念辩论
+			var attr = "triangle-obtuse right d";
+			break;
+		case 4://理性信念
+			var attr = "triangle-obtuse left rb";
+			break;
+		case 5://理性信念的结果/有效的新信念
+			var attr = "triangle-obtuse left e";
+			break;
+		default:
+			var attr = 0;
+			}
+		
+		
+		if(dia&&attr){
+		$("#diacon").append('<p id="piece" class="'+attr+' animated fadeIn">'+dia+'</p>');
+		$("#dia").val("");
+		}
+		else {
+			$("#tipsframe").load("ret_dia_tips.html #tips");
+			$("#tipsframe").fadeIn(1000).fadeOut(1000);
+		}
+	});
+	
+	$("#diacon").children().mousedown(function() { 
+	alert("c"); 
+    timeout = setTimeout(function() {  
+        $(this).remove();  
+    }, 2000);  
+	});
+	
+	$(document).on("mousedown", "#piece", function(){//长按删除气泡
+		var this_temp=$(this);
+		timeout = setTimeout(function() {  
+		this_temp.fadeOut(); 
+    	}, 1000);  
+	});
+	$(document).on("mouseup", "#piece", function(){
+    	clearTimeout(timeout);  
+	});  
+  	$(document).on("mouseout", "#piece", function(){
+    	clearTimeout(timeout);  
+	});  
+});
+</script>
+</body>
+</html>

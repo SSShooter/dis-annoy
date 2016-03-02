@@ -1,0 +1,186 @@
+@charset "utf-8";
+/* CSS Document */
+.ui-page
+{
+    background:#FFFFFF;
+}
+html,body{
+	margin:0;
+	height: 100%;
+	width: 100%;
+	font-family:"微软雅黑 Light";
+}
+#frame{
+	width: 50%;
+	max-width:250px;
+	border: medium solid #515151;
+	border-radius: 10px;
+	text-align: center;
+	white-space:nowrap; 
+}
+#dialog{
+	display:none;
+	width: 75%;
+	height: 75%;
+	max-width:300px;
+	max-height:300px;
+	background: #515151;
+	border: medium solid #515151;
+	border-radius: 10px;
+	color: #FFFFFF;	
+}
+#task_manage{
+	
+	width:75%;
+	height:75%;
+	max-width:300px;
+	max-height:500px;
+	background:#FFFFFF;
+	border: medium solid #515151;
+	border-radius: 10px;
+	text-align: center;
+	color:  #515151;	
+}
+#day{
+	font-size: 100px;
+	}
+#check {
+	top: 75%;
+   }
+.button2 {
+	width: auto;
+height: auto;
+border: 0px solid transparent;
+padding: 10px 20px;
+cursor:pointer;
+background: #ffffff;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+-o-border-radius: 10px;
+border-radius: 10px;
+font-weight: bold;
+font-size: 13px;
+color: #515151;
+text-align: center;
+text-shadow: 0px -1px 1px rgba(0, 0, 0, 0);
+	position:absolute;
+}
+#confirm{
+	left:10%;
+}
+#cancel{
+	right:10%;
+}
+#check:hover {
+   background: #292929;
+   color: #ccc;
+   }
+#check:active {
+   background: #2e2e2e;
+   }
+.center{
+    position:absolute;
+    top: 50%;
+	left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);这个时候分开XY写似乎不行
+}
+.horizontal_center{
+	position:absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+}
+.float{
+	position:absolute;
+	left: 50%;
+    -webkit-transform: translateX(-50%);
+	}
+.down{bottom:30px;}
+.up{top:30px;}
+.black_button{
+width: auto;
+height: auto;
+border: 0px solid transparent;
+padding: 10px 20px;
+cursor:pointer;
+background: #515151;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+-o-border-radius: 10px;
+border-radius: 10px;
+font-weight: bold;
+font-size: 13px;
+color: #ffffff;
+text-align: center;
+text-shadow: 0px -1px 1px rgba(0, 0, 0, 0);
+
+}
+
+.bottom{
+	position:absolute;
+	bottom:10px;
+}
+input{
+	padding:4px;
+	margin-right:10px;
+	border-radius:4px;
+	position:relative;
+	top:-3px;
+	border:1px solid #515151;
+}
+#task_box{
+	position:relative;
+	top:10%;
+	width:85%;
+	max-height:70%;
+	overflow:auto;
+	overflow-x: hidden;
+	word-break:break-all;
+}
+#task_box::-webkit-scrollbar {
+        width:5px;
+        height:10px;
+    }
+#task_box::-webkit-scrollbar-button    {
+        display:none;
+    }
+#task_box::-webkit-scrollbar-track     {
+        display:none;
+    }
+    
+#task_box::-webkit-scrollbar-thumb{
+        background:#A8A8A8;
+        border-radius:4px;
+    }
+#setp{
+	text-align: left;
+	margin-left: 20px;
+}
+#setp>span,#setp>i{
+	position:relative;
+	top:3px;
+	font-size: 25px;
+	margin-left: 10px;
+	margin-top: 9px;
+	margin-bottom: 9px;
+}
+#set{
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+#close{
+	position:absolute;
+	top:3px;
+	right:3px;
+}
+#bottom_button{
+	position:absolute;
+	bottom:20px;
+}
+#bottom_button>i{
+	margin-left:10px;
+	margin-right:10px;
+}

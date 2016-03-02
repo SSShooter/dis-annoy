@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="js/jquery-2.1.4.min.js"></script>
+<title>无标题文档</title>
+<style>
+img{
+	position:absolute;
+}
+</style>
+</head>
+
+<body>
+<img src="images/first2.png"/>
+<script>
+$(document).ready(function() {
+	
+	$("img").css({
+	"top":-Math.random()*753+"px",
+	"left":-Math.random()*900+"px"});
+	
+	function move(){
+	$("img").animate({top:-Math.random()*377+"px",left:-Math.random()*500+"px"},{
+		duration:25000, 
+		easing:"linear",
+		});
+		}
+	move();
+	setInterval(move,25000);
+	
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"/>
+<script src="js/jquery-2.1.4.min.js"></script>
+<title>无标题文档</title>
+<style>
+.verticalcenter{
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+}
+html,body{
+	height:100%;
+	width:100%;}
+#aa{
+	border: medium solid #515151;
+	border-radius: 10px;
+	text-align: center;
+	margin: auto;
+	width: 50%;
+	
+}
+#bb{
+	border-style: solid;
+	border-color: #5A5A5A;
+	width: 50px;
+	height: 50px;
+}
+#check {
+	display: block;
+	margin:auto;
+	background: #454545;
+	padding: 8.5px 17px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border: 0;
+	color: #f2f2f2;
+	font-size: 20px;
+	font-family: Helvetica, Arial, Sans-Serif;
+	text-decoration: none;
+   }
+#check:hover {
+   background: #292929;
+   color: #ccc;
+   }
+#check:active {
+   background: #2e2e2e;
+   }
+</style>
+</head>
+
+<body>
+<div id="aa" class="verticalcenter" ><div class="verticalcenter"  id="bb"></div>
+<p>坚持你的目标</p>
+<div id="day"></div>
+<p>天</p>
+</div>
+<button id="check" type="button" data-role="none">签到</button>
+<script>
+
+
+$(document).ready(function() {
+	$('#aa').css('height',$('#aa').css('width'));
+});
+</script>
+</body>
+</html>
